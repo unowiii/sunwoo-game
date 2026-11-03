@@ -75,8 +75,8 @@ html,body{height:100%;background:#050505;font-family:-apple-system,"PingFang SC"
 /* ui */
 #ui{position:absolute;top:52px;right:10px;opacity:.75;z-index:40;display:flex;gap:6px}
 #ui button{background:#0006;color:#fff;border:0;border-radius:14px;padding:5px 10px;font-size:11px;font-family:inherit;cursor:pointer}
-#menu{z-index:50;background:#000e;color:#eee;display:flex;flex-direction:column;justify-content:center;padding:30px;gap:12px}
-#menu button{background:#fff1;color:#eee;border:1px solid #fff3;border-radius:10px;padding:14px;font-size:15px;font-family:inherit;text-align:left;cursor:pointer}
+#menu{z-index:50;background:#0b0b0d;color:#eee;display:flex;flex-direction:column;justify-content:flex-start;padding:30px 22px 40px;gap:8px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#menu button{flex:none;background:#fff1;color:#eee;border:1px solid #fff3;border-radius:10px;padding:11px 14px;font-size:16px;font-family:inherit;text-align:left;cursor:pointer}
 #title{z-index:10;color:#eee;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px}
 #title h1{font-weight:200;font-size:30px;letter-spacing:.25em}#title p{font-size:13px;opacity:.7;margin-top:18px;line-height:1.9}
 #title .go{margin-top:46px;display:flex;flex-direction:column;gap:10px}
@@ -100,7 +100,7 @@ html,body{height:100%;background:#050505;font-family:-apple-system,"PingFang SC"
 .afb{background:#fff;border-radius:14px;padding:10px 12px;display:flex;gap:10px;align-items:center;width:210px;cursor:pointer}.afb .apl{width:36px;height:36px;border-radius:50%;background:#3a3a3a;color:#fff;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px;animation:apul 1.4s infinite}.afb.on .apl{animation:none;background:#e0a800}@keyframes apul{50%{box-shadow:0 0 0 7px #3a3a3a22}}
 .fl{perspective:900px;width:250px;height:340px;margin:0 auto}.fi{position:relative;width:100%;height:100%;transition:transform .9s;transform-style:preserve-3d}.fi.on{transform:rotateY(180deg)}.ff,.fb{position:absolute;inset:0;backface-visibility:hidden;border-radius:10px;box-shadow:0 10px 30px #0008}.ff{background:center/cover #fff}.fb{transform:rotateY(180deg);background:#fbf7ee;color:#2a2a2a;padding:22px 18px;text-align:left;font-family:"Ma Shan Zheng","ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive;font-size:15px;line-height:1.55}.fb p{margin:0 0 4px;opacity:0;transition:opacity .7s}.fb p.on{opacity:1}.fb p:last-of-type{text-align:right;margin-top:8px}.fb .rd{position:absolute;right:14px;bottom:10px;width:60px;opacity:0;transition:opacity .8s}.fb .rd.on{opacity:1}
 .vct{position:absolute;top:58px;left:0;right:0;text-align:center;color:#fff;text-shadow:0 1px 4px #000a}.vpip{position:absolute;right:16px;top:110px;width:96px;height:150px;border-radius:12px;background:center/cover;border:2px solid #fff8;box-shadow:0 4px 14px #0007}.vce{position:absolute;top:45%;left:0;right:0;text-align:center}body:has(#cine.vc) #sub{bottom:17%}body:has(#cine.vc) #prompt{bottom:13%}.vlay{position:absolute;inset:0;pointer-events:none;z-index:3}.vbt{position:absolute;bottom:34px;left:0;right:0;display:flex;justify-content:center;gap:26px}.vbt i{width:52px;height:52px;border-radius:50%;background:#fff3;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:20px}.vce{position:absolute;top:45%;left:0;right:0;text-align:center;color:#fff;font-size:16px;letter-spacing:.05em}
-</style></head><body>
+</style><style>#sub{font-size:20px;line-height:1.65}#sub.big{font-size:28px}.bub{font-size:19px;line-height:1.42;max-width:74%;font-weight:400}.nm{font-size:13px;color:#333}.zh{font-size:85%;opacity:.7}.spk{font-weight:700;color:#ffe38a}#prompt{font-size:15px;color:#fffe;text-shadow:0 1px 5px #000;font-weight:500}#memo p{font-size:18px}.ctr span{font-size:13px}</style></head><body>
 <div id="stage"><div id="phone">
  <div id="cine" class="layer bg film hide"><div class="cardt"></div></div>
  <div id="list" class="layer hide"><div class="sb"><span id="lsb">23:48</span><span>▮▮▮ ◔ ▭</span></div>
@@ -2607,18 +2607,19 @@ html,body{height:100%;background:#050505;font-family:-apple-system,"PingFang SC"
  "起来了吗？想你了。": "일어났어? 보고 싶어.",
  "刚醒。": "방금 깼어.",
  "那早安。": "그럼 굿모닝.",
- "早安，男朋友。": "굿모닝, 남자친구."
+ "早安，男朋友。": "굿모닝, 남자친구.",
+ "自那以后，你们恢复了以前的联络，好像什么都没变过。": "그 후로, 너희는 예전처럼 다시 연락하기 시작했다. 마치 아무것도 변하지 않은 것처럼."
 };
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function koOf(t){t=(t||'').trim();let k=KO[t];if(!k){const u=t.replace(/^[“「]|[”」]$/g,'');k=KO[u]}return k&&k!==t?k:null}
 function koHTML(x){const k=koOf(x);if(!k)return esc(x);const q=/^[“「]/.test(x.trim());return esc(q?'「'+k+'」':k)+`<span class="zh">${esc(x)}</span>`}
-function koLine(l){const m=l.match(/^([^：「“]{1,10})：(.+)$/);if(m){const k=koOf(m[2]);if(k){const q=/^[“「]/.test(m[2].trim());return esc(m[1]+'：'+(q?'「'+k+'」':k))+`<span class="zh">${esc(l)}</span>`}}return koHTML(l)}
+function koLine(l){const m=l.match(/^([^：「“]{1,6})：(.+)$/);if(m){const k=koOf(m[2]);if(k){const q=/^[“「]/.test(m[2].trim());return `<b class="spk">${esc(m[1])}：</b>`+esc(q?'「'+k+'」':k)+`<span class="zh">${esc(m[2])}</span>`}return `<b class="spk">${esc(m[1])}：</b>`+esc(m[2])}return koHTML(l)}
 </script><style>.zh{display:block;font-size:70%;opacity:.55;margin-top:3px;line-height:1.35;font-weight:normal}</style>
 <script>// 由 gen_story.py 生成。Act 3 原文来自 t319u；其余来自 script/*.txt（逐字）。
 const STORY = [
  {id:'title', name:'序 · 标题', steps:[{t:'title'}]},
  {id:'act1', name:'第一章 · 好久不见', steps:[{"t": "card", "a": "WEDNESDAY · 21:47", "b": "第一章：好久不见", "c": "", "bg": "g01"}, {"t": "pick", "bg": "g02", "prompt": "轻触 · 捡起手机"}, {"t": "wipe", "bg": "raccoon", "prompt": "拖动或轻点 · 擦掉屏幕上的水"}, {"t": "call", "name": "Kevin", "bg": "raccoon"}, {"t": "callsub", "who": "", "text": "Kevin：「喂？善旴啊，你人呢？」"}, {"t": "callsub", "who": "", "text": "oo：「你好，请问你是这部手机主人的朋友吗？」"}, {"t": "callsub", "who": "", "text": "Kevin：「啊？你是谁？」"}, {"t": "callsub", "who": "", "text": "oo：「我在路边捡到这部手机了。」"}, {"t": "callsub", "who": "", "text": "Kevin：「等一下，这是善旴的手机吗？」"}, {"t": "callsub", "who": "", "text": "oo：「应该是。他的手机壳上有个小浣熊。」"}, {"t": "callsub", "who": "", "text": "Kevin：「对对对！麻烦你了。他刚才还在找手机，我让他联系你。」"}, {"t": "callsub", "who": "", "text": "oo：「好。」"}, {"t": "callend"}, {"t": "narr", "bg": "g01", "text": "「金善旴……」"}, {"t": "narr", "bg": "g04", "warm": 1, "text": ""}, {"t": "narr", "bg": null, "text": "有些人，好像很久没有联系了。"}, {"t": "narr", "bg": null, "text": "但再次见到的时候，还是能一下子认出来。"}, {"t": "narr", "bg": "g05", "text": "善旴：「啊，真的谢谢你。」"}, {"t": "narr", "bg": "g05", "text": "oo：「你的手机。」"}, {"t": "narr", "bg": "g05", "text": "善旴：「我刚才找半天了。幸好你捡到了。」"}, {"t": "narr", "bg": "g05", "text": "oo：「下次小心一点。」"}, {"t": "narr", "bg": "g05", "text": "善旴：「知道了。」"}, {"t": "narr", "bg": "g05", "text": "善旴：「好久不见。」"}, {"t": "narr", "bg": "g05", "text": "oo：「好久不见。」"}, {"t": "black", "text": ""}, {"t": "card", "a": "", "b": "偏偏是金善旴", "c": "一个关于熟悉、偏爱，以及某只特别难搞的小浣熊的故事。", "bg": null, "end": 1}]},
- {id:'act2', name:'第二幕 · 原来我们以前这么熟', steps:[{"t": "card", "a": "", "b": "第二幕｜原来我们以前这么熟", "c": "周三，22:30", "bg": "g06"}, {"t": "narr", "bg": "raccoon", "text": ""}, {"t": "history", "prompt": "向上滑动 · 翻看以前的聊天", "msgs": [{"w": "date", "x": "周三 14:06"}, {"w": "him", "x": "人生中最重要的东西是什么？"}, {"w": "her", "x": "好吃的东西？"}, {"w": "him", "x": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"}, {"w": "him", "x": "我就不该问你"}, {"w": "her", "x": "那你觉得呢"}, {"w": "him", "x": "吃好吃的"}, {"w": "him", "x": "还有朋友"}, {"w": "him", "x": "还有喜欢的人"}, {"w": "her", "x": "你怎么突然这么正经"}, {"w": "him", "x": "我一直很有深度好吗"}, {"w": "her", "x": "深度是指你嘴有多深吗"}, {"w": "him", "x": "呀！！！！！！"}, {"w": "him", "x": "你真的"}, {"w": "him", "x": "我刚刚还在认真思考人生"}, {"w": "her", "x": "对不起 继续思考"}, {"w": "him", "x": "算了"}, {"w": "him", "x": "我饿了"}, {"w": "her", "x": "你的人生思考结束得真快"}]}, {"t": "narr", "bg": "g04", "warm": 1, "text": ""}, {"t": "narr", "bg": "g12", "warm": 1, "text": ""}, {"t": "chat", "reset": 1, "msgs": [{"w": "date", "x": "LAST SUMMER"}, {"w": "photo_her", "img": "raccoon", "hold": 1500}, {"w": "her", "x": "找到失散亲戚了。", "hold": 2000}]}, {"t": "narr", "bg": "g06", "text": ""}, {"t": "narr", "bg": "raccoon", "text": ""}]},
+ {id:'act2', name:'第二幕 · 原来我们以前这么熟', steps:[{"t": "black", "text": "自那以后，你们恢复了以前的联络，好像什么都没变过。"}, {"t": "card", "a": "", "b": "第二幕｜原来我们以前这么熟", "c": "周三，22:30", "bg": "g06"}, {"t": "narr", "bg": "raccoon", "text": ""}, {"t": "history", "prompt": "向上滑动 · 翻看以前的聊天", "msgs": [{"w": "date", "x": "周三 14:06"}, {"w": "him", "x": "人生中最重要的东西是什么？"}, {"w": "her", "x": "好吃的东西？"}, {"w": "him", "x": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"}, {"w": "him", "x": "我就不该问你"}, {"w": "her", "x": "那你觉得呢"}, {"w": "him", "x": "吃好吃的"}, {"w": "him", "x": "还有朋友"}, {"w": "him", "x": "还有喜欢的人"}, {"w": "her", "x": "你怎么突然这么正经"}, {"w": "him", "x": "我一直很有深度好吗"}, {"w": "her", "x": "深度是指你嘴有多深吗"}, {"w": "him", "x": "呀！！！！！！"}, {"w": "him", "x": "你真的"}, {"w": "him", "x": "我刚刚还在认真思考人生"}, {"w": "her", "x": "对不起 继续思考"}, {"w": "him", "x": "算了"}, {"w": "him", "x": "我饿了"}, {"w": "her", "x": "你的人生思考结束得真快"}]}, {"t": "narr", "bg": "g04", "warm": 1, "text": ""}, {"t": "narr", "bg": "g12", "warm": 1, "text": ""}, {"t": "chat", "reset": 1, "msgs": [{"w": "date", "x": "LAST SUMMER"}, {"w": "photo_her", "img": "raccoon", "hold": 1500}, {"w": "her", "x": "找到失散亲戚了。", "hold": 2000}]}, {"t": "narr", "bg": "g06", "text": ""}, {"t": "narr", "bg": "raccoon", "text": ""}]},
  {id:'act3', name:'第三幕 · 已读不回的人', steps:[
   // 01
   {t:'lock', time:'23:48', date:'星期五', prompt:'轻触 · 解锁'},
@@ -2803,9 +2804,16 @@ function playDemo(b){ac=ac||new AudioContext();if(demoOn){demoOn.forEach(o=>{try
   for(let k=0;k<2;k++)note(mel[(bar*2+k)%16]+12,st+k*2*q+(bar%2?q*.5:0),1.6*q,'sine',.22)}
  demoOn=os;b.querySelector('.apl').textContent='❚❚';b.classList.add('on');setTimeout(()=>{if(demoOn===os){demoOn=null;b.querySelector('.apl').textContent='▶';b.classList.remove('on')}},32*q*1000+300)}
 // menu
-$('mb').onclick=e=>{e.stopPropagation();const m=$('menu');m.innerHTML='<div style="font-size:13px;opacity:.6;letter-spacing:.2em;margin-bottom:6px">章节选择</div>';
- STORY.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c.name;b.onclick=ev=>{ev.stopPropagation();m.classList.add('hide');jump(i,0)};m.appendChild(b)});
- const x=document.createElement('button');x.textContent='关闭';x.onclick=ev=>{ev.stopPropagation();m.classList.add('hide')};m.appendChild(x);m.classList.remove('hide')};
+function menuItems(){const r=[['序 · 标题',0,0,0]];STORY.forEach((c,ci)=>c.steps.forEach((s,i)=>{if(s.t!=='card'||!s.b)return;let m;
+ if((m=s.b.match(/^第一章[：｜](.+)$/)))r.push([`第1章 · ${m[1]}`,ci,i,0]);
+ else if((m=s.b.match(/^第二幕[：｜](.+)$/)))r.push([`1-2 · ${m[1]}`,ci,i,1]);
+ else if((m=s.b.match(/^(\d{1,2}) \/ (.+)$/)))r.push([`第${+m[1]}章 · ${m[2]}`,ci,i,0]);
+ else if((m=s.b.match(/^(8-0\d) \/ (.+)$/)))r.push([`约会篇 ${m[1]} · ${m[2]}`,ci,i,1]);}));return r}
+$('mb').onclick=e=>{e.stopPropagation();const m=$('menu');const it=menuItems();const n=it.filter(x=>!x[3]).length-1;
+ m.innerHTML=`<div style="font-size:14px;opacity:.75;letter-spacing:.15em;margin-bottom:4px;position:sticky;top:-30px;background:#000;padding:10px 0;z-index:2">章节选择 · 共 ${n} 章（向下滑动）</div>`;
+ it.forEach(([t,ci,i,sub])=>{const b=document.createElement('button');b.textContent=t;if(sub){b.style.marginLeft='22px';b.style.fontSize='14px';b.style.opacity='.85'}b.onclick=ev=>{ev.stopPropagation();m.classList.add('hide');jump(ci,i)};m.appendChild(b)});
+ m.insertAdjacentHTML('beforeend',`<div style="text-align:center;opacity:.6;font-size:13px;padding:8px 0">— 以上为全部 ${n} 章 · 完 —</div>`);
+ const x=document.createElement('button');x.textContent='关闭';x.onclick=ev=>{ev.stopPropagation();m.classList.add('hide')};m.appendChild(x);m.classList.remove('hide');m.scrollTop=0};
 let runId=0;
 function jump(c,s){runId++;tapR=null;$('itxt').textContent='';$('zoom').classList.add('hide');$('kc').style.background='';$('sendb').classList.remove('on');ch=c;st=s;clearChat();$('dim').style.opacity=0;run(runId)}
 async function run(id){
@@ -2870,7 +2878,7 @@ async function play(s,id){
   prompt_('轻触照片放大 · 轻触空白继续');await tap();break}
  case 'draft':{show('kkt');$('msgs').style.background=s.wall?`linear-gradient(#BACEDEcc,#BACEDEcc),url(${IMG[s.wall]}) center/cover`:'';const it=$('itxt');it.textContent='';for(const g of s.segs){for(const c of g){if(!alive(id))return;it.textContent+=c;await sleep(120)}await sleep(900)}
   await sleep(800);sub('未发送','onchat');$('dim').style.opacity=.6;prompt_('轻触继续');await tap();$('dim').style.opacity=0;it.textContent='';break}
- case 'black':{const c=$('cine');bgset(c,null);c.classList.remove('warm');c.querySelector('.cardt').innerHTML=`<div class="cb" style="font-size:15px;opacity:.7">${s.text}</div>`;show('cine');await wait(3500,1500);break}
+ case 'black':{const c=$('cine');bgset(c,null);c.classList.remove('warm');c.querySelector('.cardt').innerHTML=`<div class="cb" style="font-size:19px;opacity:.85;line-height:1.7;padding:0 26px">${/</.test(s.text)?s.text:koHTML(s.text)}</div>`;show('cine');await wait(koOf(s.text)?5000:3500,1500);break}
  case 'viewfinder':{const v=$('vf');show('vf');v.innerHTML=`<div class="lb">照片</div><div class="img" style="background-image:url(${IMG[s.img]})"></div><div class="hand"></div><div class="sh" id="shut"></div>`;prompt_('');
   const shot=()=>new Promise(r=>$('shut').onclick=e=>{e.stopPropagation();v.classList.remove('flash');void v.offsetWidth;v.classList.add('flash');r()});
   await shot();await sleep(500);for(const l of (s.mid||[])){sub(l,'onchat');prompt_('轻触继续');await tap()}sub('');prompt_('');v.querySelector('.hand').style.opacity=0;await shot();await sleep(600);$('zimg').src=IMG[s.img];$('zoom').classList.remove('hide');await sleep(1800);$('zoom').classList.add('hide');break}
